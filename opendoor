@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# (c) LabE104
+# 
+# Script for wrtnode
+
+# Is gpio created?
+GPIONUMBER=0
+PATHGPIOS=/sys/class/gpio
+GPIODIR=${PATHGPIOS}/gpio${GPIONUMBER}
+HI=1
+LOW=0
+
+send_2_gpio() {
+	local gpio=$1
+	local status=$2
+	echo "$status to $gpio"
+	[ -z "$gpio" -o  ! -d "$gpio" -o -z "$status" ] && return
+	echo $status > $gpio/value
+}
+
+gpio_hi() {
+	send_2_gpio $1 $HI
+}
+
+gpio_low() {
+	send_2_gpio $1 $LOW
+}
+
+echo "Content-type: text/html"
+echo ""
+echo "<html><body>"
+echo 'Now, I am trying to open door!'
+echo "<pre>"
+
+[ ! -d "$GPIODIR" ] && {
+	echo "Gpio0 does not export." 
+	echo 0 > ${PATHGPIOS}/export
+	echo "out" > $GPIODIR/direction
+	gpio_low ${GPIODIR}
+}
+[ ! -d "$GPIODIR" ] && return
+
+gpio_hi ${GPIODIR}
+sleep 1
+gpio_low ${GPIODIR}
+
+echo "</pre>"
+echo "The door is open."
+
+echo "</body></html>"
+
