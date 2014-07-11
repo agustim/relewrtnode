@@ -1,15 +1,15 @@
 PREPARE HARDWARE
 ----------------
 
-Plug rele in next pins:
+Plug rele in this pins:
 
 	* VCC = 1 or 2
 	* GND = 3 or 4
 	* GPIO0 = 17
 
-In this side ( http://wrtnode.com/wp-content/uploads/2013/11/jp3.png ) 
+To this side ( http://wrtnode.com/wp-content/uploads/2013/11/jp3.png ) 
 
-Like this example: http://qmp.cat/data/_uploaded/image/wrtnode/qmp-wrt-07.jpg
+You can see an example: http://qmp.cat/data/_uploaded/image/wrtnode/qmp-wrt-07.jpg
 
 INSTALL
 -------
